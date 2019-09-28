@@ -1,5 +1,5 @@
-﻿@page "/exercise3"
-@using CSharpExercises.Classes.Chapter_3;
+﻿@*@page "/exercise-03-03"*@
+@using CSharpExercises.Classes.Chapter_03;
 
 <h3>Enter Student Data</h3>
 
@@ -8,7 +8,6 @@
 <input @bind="@age" placeholder="Age" />
 
 <button class="btn-sm btn-success" @onclick="CreateStudent">Create</button>
-<button class="btn-sm btn-danger" @onclick="Clear">Clear</button>
 
 <h4>@output</h4>
 
@@ -21,13 +20,4 @@
         var student = new Student(firstName, lastName, age);
         output = $"{student.fullName} {student.age}";
     }
-
-    void Clear()
-    {
-        lastName = string.Empty;
-        firstName = string.Empty;
-        output = string.Empty;
-        age = default;
-    }
-
 }

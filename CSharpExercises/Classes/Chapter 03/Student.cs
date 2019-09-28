@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CSharpExercises.Classes.Chapter_3
+namespace CSharpExercises.Classes.Chapter_03
 {
     public class Student
     {
