@@ -1,0 +1,23 @@
+﻿@*@page "/exercise3"*@
+@using CSharpExercises.Classes.Chapter_3;
+
+<h3>Enter Student Data</h3>
+
+<input @bind="@firstName" placeholder="First name" />
+<input @bind="@lastName" placeholder="Last name" />
+<input @bind="@age" placeholder="Age" />
+
+<button class="btn-sm btn-success" @onclick="CreateStudent">Create</button>
+
+<h4>@output</h4>
+
+@code {
+    string firstName, lastName, output;
+    int age;
+
+    void CreateStudent()
+    {
+        var student = new Student(firstName, lastName, age);
+        output = $"{student.fullName} {student.age}";
+    }
+}

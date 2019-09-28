@@ -1,0 +1,16 @@
+﻿@page "/exercise2"
+@using CSharpExercises.Classes.Chapter_3;
+
+<h3>Students</h3>
+<p>Student 1: name: @student1.fullName age: @student1.age</p>
+<p>Student 2: name: @student2.fullName age: @student2.age</p>
+
+
+@code {
+    Student student1 = new Student();
+    Student student2 = new Student("John", "Doe", 42);
+
+    //protected override void OnInitialized()
+    //{
+    //}
+}
