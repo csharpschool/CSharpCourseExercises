@@ -1,0 +1,48 @@
+﻿@*@page "/exercise-04-01"*@
+@using CSharpExercises.Classes.Chapter_04
+
+<h3>Calculator</h3>
+<input @bind="@value1" placeholder="Enter a value" />
+<input @bind="@value2" placeholder="Enter a value" />
+<br />
+<button class="btn-sm btn-light" @onclick="Add">+</button>
+<button class="btn-sm btn-light" @onclick="Subtract">-</button>
+<button class="btn-sm btn-light" @onclick="Divide">/</button>
+<button class="btn-sm btn-light" @onclick="Multiply">x</button>
+
+<h4>@result</h4>
+
+@code {
+    string result = string.Empty;
+    double value1 = default, value2 = default;
+
+    void Add()
+    {
+        var calc = new Calculator();
+        var total = calc.Add(value1, value2);
+        //var output = total.ToString();
+        //result = output;
+        result = $"{value1} + {value2} = {total}";
+    }
+
+    void Subtract()
+    {
+        var calc = new Calculator();
+        var total = calc.Subtract(value1, value2);
+        result = $"{value1} + {value2} = {total}";
+    }
+
+    void Divide()
+    {
+        var calc = new Calculator();
+        var total = calc.Divide(value1, value2);
+        result = $"{value1} / {value2} = {total}";
+    }
+
+    void Multiply()
+    {
+        var calc = new Calculator();
+        var total = calc.Multiply(value1, value2);
+        result = $"{value1} x {value2} = {total}";
+    }
+}
