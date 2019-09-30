@@ -38,7 +38,8 @@ namespace CSharpExercises.Classes.Chapter_04
         public double Divide(double value1, double value2)
         {
             // Note that division by 0 will result in 
-            // an unhandled exception (error)
+            // an unhandled exception (error) if placed
+            // in a try-block, else infinity
             return value1 / value2;
         }
         public double Divide(double value1, double value2, out string output)
