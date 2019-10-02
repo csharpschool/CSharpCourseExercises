@@ -148,3 +148,21 @@ app {
         display: block;
     }
 }
+
+.no-list-style {
+    list-style: none;
+}
+
+.vertically-align {
+    vertical-align: middle;
+    margin-bottom: 2px;
+}
+
+.completed {
+    text-decoration: line-through;
+}
+
+.btn {
+    padding: 0 10px;
+}
+

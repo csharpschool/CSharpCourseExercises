@@ -1,0 +1,40 @@
+﻿@page "/exercise-06-01"
+@using CSharpExercises.Classes.Chapter_06
+
+<h3>TO-DO</h3>
+<input @bind="@description" placeholder="Enter a value" />
+<button class="btn-sm btn-light" @onclick="AddTodo">+</button>
+
+
+<ul class="no-list-style">
+    @foreach (var todo in todos.Get())
+    {
+        <li>
+            <input class="vertically-align" type="checkbox" @onchange="@(e => CheckboxChanged(todo))" @attributes="todo.GetAttributes()" />
+            <span class="@todo.completed">@todo.GetDescription()</span>
+            <input type="button" value="Delete" class="btn btn-link vertically-align" @onclick="@(e => Delete(todo))" />
+        </li>
+    }
+</ul>
+
+@code {
+    Todos todos = new Todos();
+    string description;
+
+    void CheckboxChanged(Todo todo)
+    {
+        todo.completed = todo.completed.Equals(string.Empty) ? "completed" : string.Empty;
+        todo.CheckAttributes();
+    }
+
+    void Delete(Todo todo)
+    {
+        todos.Remove(todo);
+    }
+
+    void AddTodo()
+    {
+        todos.Add(description);
+        description = string.Empty;
+    }
+}
