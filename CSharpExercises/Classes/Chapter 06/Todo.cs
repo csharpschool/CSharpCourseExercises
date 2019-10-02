@@ -8,8 +8,9 @@ namespace CSharpExercises.Classes.Chapter_06
     public class Todo
     {
         private string description = string.Empty;
-        public string completed = string.Empty;
-        public List<KeyValuePair<string, object>> attributes = new List<KeyValuePair<string, object>>();
+        private bool completed = false;
+        private Dictionary<string, object> checkboxAttributes = new Dictionary<string, object>();
+        private Dictionary<string, object> descriptionAttributes = new Dictionary<string, object>();
 
         public Todo(string description)
         {
@@ -18,13 +19,23 @@ namespace CSharpExercises.Classes.Chapter_06
 
         // Expression bodied methods
         public string GetDescription() => description;
-        public List<KeyValuePair<string, object>> GetAttributes() => attributes;
+        public Dictionary<string, object> GetCheckboxAttributes() => checkboxAttributes;
+        public Dictionary<string, object> GetDescriptionAttributes() => descriptionAttributes;
         public void CheckAttributes()
         {
-            if (completed.Equals(string.Empty))
-                attributes.Clear();
+            completed = !completed;
+
+            if (completed)
+            {
+                checkboxAttributes.Add("checked", "checked");
+                descriptionAttributes.Add("class", "completed");
+            }
             else
-                attributes.Add(new KeyValuePair<string, object>("checked", "checked"));
+            {
+                checkboxAttributes.Clear();
+                descriptionAttributes.Clear();
+            }
         }
+
     }
 }

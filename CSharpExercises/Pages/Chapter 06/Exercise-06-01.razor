@@ -10,8 +10,8 @@
     @foreach (var todo in todos.Get())
     {
         <li>
-            <input class="vertically-align" type="checkbox" @onchange="@(e => CheckboxChanged(todo))" @attributes="todo.GetAttributes()" />
-            <span class="@todo.completed">@todo.GetDescription()</span>
+            <input class="vertically-align" type="checkbox" @onchange="@(e => CheckboxChanged(todo))" @attributes="todo.GetCheckboxAttributes()" />
+            <span @attributes="todo.GetDescriptionAttributes()">@todo.GetDescription()</span>
             <input type="button" value="Delete" class="btn btn-link vertically-align" @onclick="@(e => Delete(todo))" />
         </li>
     }
@@ -23,7 +23,6 @@
 
     void CheckboxChanged(Todo todo)
     {
-        todo.completed = todo.completed.Equals(string.Empty) ? "completed" : string.Empty;
         todo.CheckAttributes();
     }
 
