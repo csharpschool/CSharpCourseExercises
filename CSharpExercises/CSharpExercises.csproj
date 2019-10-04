@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Classes\Chapter 08\" />
+    <Folder Include="Pages\Chapter 08\" />
+  </ItemGroup>
+
 </Project>

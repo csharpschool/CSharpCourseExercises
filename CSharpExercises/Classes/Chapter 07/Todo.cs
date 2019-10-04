@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CSharpExercises.Classes.Chapter_06
+namespace CSharpExercises.Classes.Chapter_07
 {
     public class Todo
     {

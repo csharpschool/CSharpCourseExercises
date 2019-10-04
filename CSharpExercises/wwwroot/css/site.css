@@ -167,3 +167,8 @@ app {
     padding: 0 10px;
 }
 /* exercise-06-01 End */
+
+.calc-btn-size {
+    width:33px;
+    height:33px;
+}

@@ -1,7 +1,7 @@
 ﻿using Xunit;
-using CSharpExercises.Classes.Chapter_06;
+using CSharpExercises.Classes.Chapter_07;
 
-namespace CSharpExercises.Tests.Chapter_06
+namespace CSharpExercises.Tests.Chapter_07
 {
     public class ToDoTests
     {
