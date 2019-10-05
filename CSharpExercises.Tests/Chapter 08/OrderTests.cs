@@ -8,7 +8,7 @@ namespace CSharpExercises.Tests.Chapter_08
         [Fact]
         public void CanCreateLineItemInstance()
         {
-            var item = new LineItem(1, "Product 1", 2, 10, 1.5);
+            var item = new LineItem(1, "Product 1", 2, 10, 50);
 
             Assert.NotNull(item);
             Assert.Equal(1, item.Id);
@@ -32,11 +32,29 @@ namespace CSharpExercises.Tests.Chapter_08
         }
 
         [Fact]
+        public void CanCreateOrderFactoryInstance()
+        {
+            var orders = new OrderFactory();
+
+            Assert.NotNull(orders);
+        }
+
+        [Fact]
+        public void CanAddOrderWithFactoryInstance()
+        {
+            var orders = new OrderFactory();
+
+            orders.Add("Customer 1", "Address 1");
+
+            Assert.NotEmpty(orders.Get());
+        }
+
+
+        [Fact]
         public void CanAddLineItemToOrderInstance()
         {
             var order = new Order(1, "Customer 1", "Address 1");
-            //var item = new LineItem(1, "Product 1", 2, 10, 1.5);
-            order.AddLineItem("Product 1", 2, 10, 1.5);
+            order.AddLineItem("Product 1", 2, 10, 50);
             var addedItem = order.Items.Find(i => i.Id.Equals(1));
 
             // Assert Order
@@ -50,7 +68,7 @@ namespace CSharpExercises.Tests.Chapter_08
             Assert.Equal(1, addedItem.Id);
             Assert.Equal(2, addedItem.Count);
             Assert.Equal(10, addedItem.Price);
-            Assert.Equal(10, item.VatCost);
+            Assert.Equal(10, addedItem.VatCost);
             Assert.Equal(30, addedItem.Total);
             Assert.Equal("Product 1", addedItem.Product);
         }
@@ -59,10 +77,8 @@ namespace CSharpExercises.Tests.Chapter_08
         public void CanGetTotalAndVatInOrderInstance()
         {
             var order = new Order(1, "Customer 1", "Address 1");
-            //var item1 = new LineItem(1, "Product 1", 2, 10, 1.5);
-            //var item2 = new LineItem(2, "Product 2", 1, 100, 0.5);
             
-            order.AddLineItem("Product 1", 2, 10, 1.5);
+            order.AddLineItem("Product 1", 2, 10, 50);
             order.AddLineItem("Product 2", 1, 100, 0.5);
             order.GetTotalAndVat(out double total, out double vat);
 
