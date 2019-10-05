@@ -17,8 +17,4 @@
     <ProjectReference Include="..\CSharpExercises\CSharpExercises.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Chapter 10\" />
-  </ItemGroup>
-
 </Project>
