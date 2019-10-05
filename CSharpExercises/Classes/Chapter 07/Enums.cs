@@ -1,4 +1,4 @@
-﻿namespace CSharpExercises.Classes.Chapter_08
+﻿namespace CSharpExercises.Classes.Chapter_07
 {
     public enum Operators
     {

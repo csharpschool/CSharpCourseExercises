@@ -1,7 +1,7 @@
-﻿using CSharpExercises.Classes.Chapter_08;
+﻿using CSharpExercises.Classes.Chapter_07;
 using Xunit;
 
-namespace CSharpExercises.Tests.Chapter_08
+namespace CSharpExercises.Tests.Chapter_07
 {
     public class CalculatorTests
     {
