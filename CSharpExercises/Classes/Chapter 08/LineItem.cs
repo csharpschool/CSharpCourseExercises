@@ -16,14 +16,17 @@ namespace CSharpExercises.Classes.Chapter_08
         {
             get => this switch
             {
-                var (vat) when vat == 0 => 1,
-                var (vat) when vat > 0 && vat < 1 => vat + 1,
-                var (vat) when vat > 1 && vat < 2 => vat,
-                _ => 1
+                var (vat) when vat >= 1 && vat <= 100 => vat / 100,
+                var (vat) when vat > 0 && vat < 1 => vat,
+                _ => 0
+                //var (vat) when vat == 0 => 1,
+                //var (vat) when vat > 0 && vat < 1 => vat + 1,
+                //var (vat) when vat > 1 && vat < 2 => vat,
+                //_ => 1
             };
         }
-        public double Total => Count * Price * Vat;
-        public double VatCost => Count * Price * (Vat - 1);
+        public double Total => Count * Price * (Vat + 1);
+        public double VatCost => Count * Price * Vat;
 
         public LineItem(int id, string product, int count, double price, double vat)
         {

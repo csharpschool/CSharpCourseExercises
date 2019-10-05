@@ -58,7 +58,7 @@
                     <th scope="col">Product</th>
                     <th scope="col">Count</th>
                     <th scope="col">Price</th>
-                    <th scope="col">VAT</th>
+                    <th scope="col">VAT %</th>
                     <th scope="col">VAT $</th>
                     <th scope="col">Total</th>
                 </tr>
@@ -71,7 +71,7 @@
                     <td>@item.Product</td>
                     <td>@item.Count</td>
                     <td>@item.Price</td>
-                    <td>@item.Vat</td>
+                    <td>@(item.Vat * 100)</td>
                     <td>@item.VatCost</td>
                     <td>@item.Total</td>
                 </tr>
