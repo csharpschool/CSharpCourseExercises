@@ -9,34 +9,34 @@ namespace CSharpExercises.Classes.Chapter_04
     {
         public static string Output(this Values values) 
         {
-            return $"{values.value1} {values.@operator} {values.value2} = {values.result}";
+            return $"{values.Value1} {(char)values.Operator} {values.Value2} = {values.Result}";
         }
 
         public static Values Add(this Values values)
         {
-            values.result = values.value1 + values.value2;
-            values.@operator = '+';
+            values.Result = values.Value1 + values.Value2;
+            values.Operator = Operators.Add;
             return values;
         }
 
         public static Values Subtract(this Values values)
         {
-            values.result = values.value1 - values.value2;
-            values.@operator = '-';
+            values.Result = values.Value1 - values.Value2;
+            values.Operator = Operators.Subtract;
             return values;
         }
 
         public static Values Divide(this Values values)
         {
-            values.result = values.value1 / values.value2;
-            values.@operator = '/';
+            values.Result = values.Value1 / values.Value2;
+            values.Operator = Operators.Divide;
             return values;
         }
 
         public static Values Multiply(this Values values)
         {
-            values.result = values.value1 * values.value2;
-            values.@operator = 'x';
+            values.Result = values.Value1 * values.Value2;
+            values.Operator = Operators.Multiply;
             return values;
         }
     }

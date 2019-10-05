@@ -23,7 +23,7 @@ namespace CSharpExercises.Tests.Chapter_03
 
             Assert.NotNull(student);
             Assert.Equal(23, student.age);
-            Assert.Equal("John Doe", student.fullName);
+            Assert.Equal("John Doe", student.FullName);
         }
     }
 }

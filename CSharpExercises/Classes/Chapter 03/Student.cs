@@ -9,7 +9,7 @@ namespace CSharpExercises.Classes.Chapter_03
     {
         private readonly string firstName = string.Empty;
         private readonly string lastName = string.Empty;
-        public string fullName = string.Empty;
+        public string FullName => $"{firstName} {lastName}"; 
         public readonly int age = default;
 
         public Student()
@@ -22,7 +22,6 @@ namespace CSharpExercises.Classes.Chapter_03
             this.firstName = firstName;
             this.lastName = lastName;
             this.age = age;
-            fullName = $"{firstName} {lastName}";
         }
     }
 }

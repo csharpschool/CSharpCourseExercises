@@ -11,10 +11,10 @@ namespace CSharpExercises.Tests.Chapter_04
             var values = new Values(10, 20);
 
             Assert.NotNull(values);
-            Assert.Equal(10, values.value1);
-            Assert.Equal(20, values.value2);
-            Assert.Equal(default, values.result);
-            Assert.Equal(default, values.@operator);
+            Assert.Equal(10, values.Value1);
+            Assert.Equal(20, values.Value2);
+            Assert.Equal(default, values.Result);
+            Assert.Equal(default, values.Operator);
         }
 
         [Fact]
@@ -25,7 +25,7 @@ namespace CSharpExercises.Tests.Chapter_04
             var output = values.Output();
 
             Assert.NotNull(values);
-            Assert.Equal(30, values.result);
+            Assert.Equal(30, values.Result);
             Assert.Equal("10 + 20 = 30", output);
         }
 
@@ -36,7 +36,7 @@ namespace CSharpExercises.Tests.Chapter_04
             var output = values.Add().Output();
 
             Assert.NotNull(values);
-            Assert.Equal(30, values.result);
+            Assert.Equal(30, values.Result);
             Assert.Equal("10 + 20 = 30", output);
         }
 
@@ -47,7 +47,7 @@ namespace CSharpExercises.Tests.Chapter_04
             var output = values.Subtract().Output();
 
             Assert.NotNull(values);
-            Assert.Equal(-10, values.result);
+            Assert.Equal(-10, values.Result);
             Assert.Equal("10 - 20 = -10", output);
         }
 
@@ -58,7 +58,7 @@ namespace CSharpExercises.Tests.Chapter_04
             var output = values.Divide().Output();
 
             Assert.NotNull(values);
-            Assert.Equal(0.5, values.result);
+            Assert.Equal(0.5, values.Result);
             Assert.Equal("10 / 20 = 0.5", output);
         }
 
@@ -69,7 +69,7 @@ namespace CSharpExercises.Tests.Chapter_04
             var output = values.Multiply().Output();
 
             Assert.NotNull(values);
-            Assert.Equal(200, values.result);
+            Assert.Equal(200, values.Result);
             Assert.Equal("10 x 20 = 200", output);
         }
     }
