@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Classes\Chapter 08\" />
-    <Folder Include="Pages\Chapter 08\" />
+    <Folder Include="Classes\Chapter 09\" />
+    <Folder Include="Pages\Chapter 09\" />
   </ItemGroup>
 
 </Project>

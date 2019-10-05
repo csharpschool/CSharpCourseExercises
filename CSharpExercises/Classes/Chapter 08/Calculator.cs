@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace CSharpExercises.Classes.Chapter_09
+namespace CSharpExercises.Classes.Chapter_08
 {
     public class Calculator
     {
