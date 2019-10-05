@@ -149,7 +149,7 @@ app {
     }
 }
 
-/* exercise-06-01 Beginning */
+/* exercise-06-01 */
 .no-list-style {
     list-style: none;
 }
@@ -163,12 +163,30 @@ app {
     text-decoration: line-through;
 }
 
-.btn {
+/*.btn {
     padding: 0 10px;
-}
-/* exercise-06-01 End */
+}*/
 
+/* exercise-07-01 */
 .calc-btn-size {
     width:33px;
     height:33px;
+}
+
+/* exercise-08-01 */
+.no-left-padding {
+    padding-left: 0px;
+}
+
+.input-width-small {
+    width: 75px;
+}
+
+.btn-top-margin{
+    margin-top: 32px;
+}
+
+.btn-link {
+    padding-top: 0px;
+    padding-bottom: 0px;
 }

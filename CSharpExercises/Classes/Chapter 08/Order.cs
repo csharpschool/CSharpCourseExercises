@@ -11,6 +11,12 @@ namespace CSharpExercises.Classes.Chapter_08
         public string Customer { get; } = string.Empty;
         public string Address { get; } = string.Empty;
         public List<LineItem> Items { get; } = new List<LineItem>();
+        private int MaxId => Items.Count.Equals(0) ? 0 : Items.Max(m => m.Id);
+        private int CurrentId => MaxId + 1;
+
+        public Order()
+        {
+        }
 
         public Order(int id, string customer, string address)
         {
@@ -19,7 +25,8 @@ namespace CSharpExercises.Classes.Chapter_08
             Address = address;
         }
 
-        public void AddLineItem(LineItem item) => Items.Add(item);
+        //public void AddLineItem(LineItem item) => Items.Add(item);
+        public void AddLineItem(string product, int count, double price, double vat) => Items.Add(new LineItem(CurrentId, product, count, price, vat));
 
         public void GetTotalAndVat(out double total, out double vat)
         {

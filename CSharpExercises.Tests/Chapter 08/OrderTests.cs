@@ -35,8 +35,8 @@ namespace CSharpExercises.Tests.Chapter_08
         public void CanAddLineItemToOrderInstance()
         {
             var order = new Order(1, "Customer 1", "Address 1");
-            var item = new LineItem(1, "Product 1", 2, 10, 1.5);
-            order.AddLineItem(item);
+            //var item = new LineItem(1, "Product 1", 2, 10, 1.5);
+            order.AddLineItem("Product 1", 2, 10, 1.5);
             var addedItem = order.Items.Find(i => i.Id.Equals(1));
 
             // Assert Order
@@ -59,11 +59,11 @@ namespace CSharpExercises.Tests.Chapter_08
         public void CanGetTotalAndVatInOrderInstance()
         {
             var order = new Order(1, "Customer 1", "Address 1");
-            var item1 = new LineItem(1, "Product 1", 2, 10, 1.5);
-            var item2 = new LineItem(2, "Product 2", 1, 100, 0.5);
+            //var item1 = new LineItem(1, "Product 1", 2, 10, 1.5);
+            //var item2 = new LineItem(2, "Product 2", 1, 100, 0.5);
             
-            order.AddLineItem(item1);
-            order.AddLineItem(item2);
+            order.AddLineItem("Product 1", 2, 10, 1.5);
+            order.AddLineItem("Product 2", 1, 100, 0.5);
             order.GetTotalAndVat(out double total, out double vat);
 
             Assert.NotNull(order);
