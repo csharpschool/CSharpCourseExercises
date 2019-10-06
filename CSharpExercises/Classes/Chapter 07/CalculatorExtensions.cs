@@ -11,20 +11,20 @@ namespace CSharpExercises.Classes.Chapter_07
             switch(result.Operator)
             {
                 case Operators.Add:
-                    result.SetValue(result.Value + operation.Value);
-                    result.SetOperator(operation.Operator);
+                    result.SetValue(result.Value + operation.Value)
+                          .SetOperator(operation.Operator);
                     break;
                 case Operators.Subtract:
-                    result.SetValue(result.Value - operation.Value);
-                    result.SetOperator(operation.Operator);
+                    result.SetValue(result.Value - operation.Value)
+                          .SetOperator(operation.Operator);
                     break;
                 case Operators.Divide:
-                    result.SetValue(result.Value / operation.Value);
-                    result.SetOperator(operation.Operator);
+                    result.SetValue(result.Value / operation.Value)
+                          .SetOperator(operation.Operator);
                     break;
                 case Operators.Multiply:
-                    result.SetValue(result.Value * operation.Value);
-                    result.SetOperator(operation.Operator);
+                    result.SetValue(result.Value * operation.Value)
+                          .SetOperator(operation.Operator);
                     break;
                 case Operators.Equals: break;
                 default: throw new ArgumentException("Opertion does not exist.", nameof(operation));
