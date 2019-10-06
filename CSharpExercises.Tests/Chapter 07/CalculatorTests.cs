@@ -62,7 +62,7 @@ namespace CSharpExercises.Tests.Chapter_07
         {
             var calculator = new Calculator();
             var operation = new Operation(10, Operators.Multiply);
-            calculator.AddOperator(operation);
+            calculator.AddOperation(operation);
 
             Assert.NotNull(calculator);
             Assert.Contains(operation, calculator.Operations);
@@ -84,7 +84,7 @@ namespace CSharpExercises.Tests.Chapter_07
         {
             var calculator = new Calculator();
             var operation = new Operation(10, Operators.Multiply);
-            calculator.AddOperator(operation);
+            calculator.AddOperation(operation);
             var result = calculator.Calculate();
 
             Assert.Equal(10, result);
@@ -99,11 +99,11 @@ namespace CSharpExercises.Tests.Chapter_07
             var operation3 = new Operation(2, Operators.Add);       // 100
             var operation4 = new Operation(30, Operators.Subtract); // 130
             var operation5 = new Operation(50, Operators.Equals);   //  80
-            calculator.AddOperator(operation1);
-            calculator.AddOperator(operation2);
-            calculator.AddOperator(operation3);
-            calculator.AddOperator(operation4);
-            calculator.AddOperator(operation5);
+            calculator.AddOperation(operation1);
+            calculator.AddOperation(operation2);
+            calculator.AddOperation(operation3);
+            calculator.AddOperation(operation4);
+            calculator.AddOperation(operation5);
             var result = calculator.Calculate();
 
             Assert.Equal(80, result);

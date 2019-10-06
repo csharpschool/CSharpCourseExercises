@@ -7,7 +7,7 @@ namespace CSharpExercises.Classes.Chapter_07
     {
         public List<Operation> Operations { get; } = new List<Operation>();
 
-        public void AddOperator(Operation operation) => Operations.Add(operation);
+        public void AddOperation(Operation operation) => Operations.Add(operation);
 
         public double Calculate() 
         {
