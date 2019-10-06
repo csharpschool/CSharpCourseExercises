@@ -27,7 +27,7 @@ namespace CSharpExercises.Tests.Chapter_07
         }
 
         [Fact]
-        public void CanChangeVlauesWithExtensionMethodsInOperationInstance()
+        public void CanChangeVlauesWithExtensionMethodsInAnOperationInstance()
         {
             var operation = new Operation(10, Operators.Multiply);
             operation.ChangeValue(20);
@@ -36,6 +36,18 @@ namespace CSharpExercises.Tests.Chapter_07
             Assert.Equal(20, operation.Value);
             Assert.Equal(Operators.Divide, operation.Operator);
         }
+
+        [Fact]
+        public void CanCalculateWithTheCalculateExtensionMethodInAnOperationInstance()
+        {
+            var operation1 = new Operation(10, Operators.Multiply);
+            var operation2 = new Operation(20, Operators.Equals);
+            var result = operation1.Calculate(operation2);
+
+            Assert.Equal(200, result.Value);
+            Assert.Equal(Operators.Equals, result.Operator);
+        }
+
 
         [Fact]
         public void CanCreateCalculatorInstance()
