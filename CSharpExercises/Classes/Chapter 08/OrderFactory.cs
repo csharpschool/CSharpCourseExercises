@@ -13,7 +13,6 @@ namespace CSharpExercises.Classes.Chapter_08
 
         public void Add(string customer, string address) => Orders.Add(new Order(CurrentId, customer, address));
         public List<Order> Get() => Orders;
-        public Order Get(int id) => Orders.Find(o => o.Id.Equals(id));
         public Order Latest() => Orders.Find(o => o.Id.Equals(MaxId));
 
     }

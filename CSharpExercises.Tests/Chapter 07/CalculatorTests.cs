@@ -64,7 +64,6 @@ namespace CSharpExercises.Tests.Chapter_07
             var operation = new Operation(10, Operators.Multiply);
             calculator.AddOperation(operation);
 
-            Assert.NotNull(calculator);
             Assert.Contains(operation, calculator.Operations);
         }
 
@@ -72,8 +71,6 @@ namespace CSharpExercises.Tests.Chapter_07
         public void CanCalculateWithEmptyListCalculatorInstance()
         {
             var calculator = new Calculator();
-            //var operation = new Operation(10, Operators.Multiply);
-            //calculator.AddValue(operation);
             var result = calculator.Calculate();
 
             Assert.Equal(default, result);
@@ -108,6 +105,5 @@ namespace CSharpExercises.Tests.Chapter_07
 
             Assert.Equal(80, result);
         }
-
     }
 }

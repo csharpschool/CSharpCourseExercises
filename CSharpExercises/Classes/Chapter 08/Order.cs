@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace CSharpExercises.Classes.Chapter_08
 {
@@ -26,9 +24,9 @@ namespace CSharpExercises.Classes.Chapter_08
         }
 
         //public void AddLineItem(LineItem item) => Items.Add(item);
-        public void AddLineItem(string product, int count, double price, double vat) => Items.Add(new LineItem(CurrentId, product, count, price, vat));
+        public void AddLineItem(string product, int quantity, double price, double vat) => Items.Add(new LineItem(CurrentId, product, quantity, price, vat));
 
-        public void GetTotalAndVat(out double total, out double vat)
+        public void GetOrderTotalAndVat(out double total, out double vat)
         {
             double totalPrice = default, totalVat = default;
             for (int i = 0; i < Items.Count; i++)

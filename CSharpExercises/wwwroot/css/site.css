@@ -163,14 +163,19 @@ app {
     text-decoration: line-through;
 }
 
-/*.btn {
+.btn {
     padding: 0 10px;
-}*/
+}
 
 /* exercise-07-01 */
-.calc-btn-size {
+.calc-btn-size-sm {
     width:33px;
     height:33px;
+}
+
+.calc-btn-size-lg {
+    width: 108px;
+    height: 33px;
 }
 
 /* exercise-08-01 */
@@ -189,4 +194,8 @@ app {
 .btn-link {
     padding-top: 0px;
     padding-bottom: 0px;
+}
+
+.btn-padding {
+    padding: 6px 12px;
 }
