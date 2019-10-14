@@ -79,6 +79,27 @@ namespace CSharpExercises.Tests.Chapter_09
             });
         }
 
+        [Fact]
+        public void AddMethodInOrderFactoryThrowsExceptionForWrongCustomerData()
+        {
+            Assert.Throws<ArgumentException>(() =>
+            {
+                var orderFactory = new OrderFactory();
+                orderFactory.Add("", "Address 1");
+            });
+        }
+
+        [Fact]
+        public void AddMethodInOrderFactoryThrowsExceptionForWrongAddressData()
+        {
+            Assert.Throws<ArgumentException>(() =>
+            {
+                var orderFactory = new OrderFactory();
+                orderFactory.Add("Customer 1", "");
+            });
+        }
+
+
     }
 }
 

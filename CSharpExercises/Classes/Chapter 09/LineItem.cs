@@ -27,14 +27,14 @@ namespace CSharpExercises.Classes.Chapter_09
             try
             {
                 if (id < 1) throw new ArgumentException("The id must be greater than 0");
-                if (product.Equals(string.Empty) || product == default)
+                else if (product.Equals(string.Empty) || product == default)
                     throw new ArgumentException("The product name cannot be empty.");
                 else if (quantity < 1)
                     throw new ArgumentException("The quantity must be greater than 0.");
-                else if (price < 1)
-                    throw new ArgumentException("The price must be greater than 0.");
+                else if (price <= 0)
+                    throw new ArgumentException("The price must be greater than or equal to 0.");
                 else if (vat < 0)
-                    throw new ArgumentException("The vat cannot be less than 0.");
+                    throw new ArgumentException("he VAT must be greater than 0.");
 
                 Id = id;
                 Product = product;
