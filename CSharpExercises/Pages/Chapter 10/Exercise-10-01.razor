@@ -1,0 +1,125 @@
+﻿@page "/exercise-10-01"
+@using CSharpExercises.Classes.Chapter_10
+
+<h3>Films and Genres</h3>
+<div class="form-row">
+    <div class="col-2 offset-8">
+        <input @bind="@filter" class="form-control" placeholder="Filter" />
+    </div>
+    <div class="col-2">
+        <button class="btn btn-primary btn-padding" @onclick="FilterFilms">Filter</button>
+    </div>
+</div>
+<br />
+<div class="form-row">
+    <div class="col-2">
+        <input @bind="@newGenre" class="form-control" placeholder="Genre" />
+    </div>
+    <div class="col-2">
+        <button class="btn btn-primary btn-padding" @onclick="AddGenre">Add</button>
+    </div>
+
+    <div class="col-2">
+        <input @bind="@newFilm" class="form-control" placeholder="Film Title" />
+    </div>
+    <div class="col-2">
+        <input @bind="@newYear" class="form-control" placeholder="Released Year" />
+    </div>
+    <div class="col-2">
+        <div class="form-group">
+            <select class="form-control" @bind="@selectedGenre">
+                @foreach (var genre in shop.Genres.OrderBy(g => g.Name))
+                {
+                    <option value=@genre.Id>@genre.Name</option>
+                }
+            </select>
+        </div>
+    </div>
+    <div class="col-2">
+        <button class="btn btn-primary btn-padding" @onclick="AddFilm">Add</button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-3">
+        <ul class="list-group">
+            @foreach (var genre in shop.Genres.OrderBy(g => g.Name))
+            {
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    @genre.Name
+                    <span class="badge badge-primary badge-pill">@shop.FilmsInGenre(genre.Id)</span>
+                </li>
+            }
+        </ul>
+    </div>
+    <div class="col-7 offset-1">
+        <ul class="list-group">
+            @foreach (var film in films.OrderBy(g => g.Title))
+            {
+                <li class="list-group-item">
+                    <div><strong>@film.Title</strong></div>
+                    @foreach (var filmGenre in film.Genres.OrderBy(g => g.Name))
+                    {
+                        <small class="badge badge-dark badge-pill">@filmGenre.Name</small>
+                    }
+                </li>
+            }
+        </ul>
+    </div>
+</div>
+
+@if (error != string.Empty)
+{
+    <div class="alert alert-danger" role="alert">
+        <strong>Error</strong> @error
+    </div>
+}
+
+@code {
+    Shop shop = new Shop();
+    List<Film> films = new List<Film>();
+    string newGenre = string.Empty;
+    string newFilm = string.Empty;
+    string newYear = string.Empty;
+    string error = string.Empty;
+    string filter = string.Empty;
+    int selectedGenre;
+
+    protected override void OnInitialized()
+    {
+        films = shop.Films;
+    }
+
+    void AddGenre()
+    {
+        shop.Genres.AddGenre(newGenre);
+    }
+
+    void AddFilm()
+    {
+        try
+        {
+            error = string.Empty;
+            var success = int.TryParse(newYear, out int year);
+
+            shop.AddFilm(newFilm, year, selectedGenre);
+
+            newFilm = string.Empty;
+            newYear = string.Empty;
+            selectedGenre = default;
+        }
+        catch (Exception ex)
+        {
+
+            error = ex.Message;
+        }
+    }
+
+    void FilterFilms()
+    {
+        if (filter.Length <= 1)
+            films = shop.Films;
+        else
+            films = shop.Films.Where(f => f.Title.ToLower().Contains(filter.ToLower())).ToList();
+    }
+}
