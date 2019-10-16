@@ -5,19 +5,33 @@ using System.Threading.Tasks;
 
 namespace CSharpExercises.Classes.Chapter_10
 {
+    public enum SortOrder
+    {
+        Ascending,
+        Descending
+    }
+
     public class Shop
     {
-        public List<Film> Films { get; } = new List<Film>();
-        public List<Genre> Genres { get; } = new List<Genre>();
+        private List<Film> _films = new List<Film>();
+        public List<Film> Films => SortOrder.Equals(SortOrder.Ascending)
+            ? _films.OrderBy(f => f.Title).ToList() 
+            : _films.OrderByDescending(f => f.Title).ToList();
 
-        public Shop()
+        public List<Genre> Genres { get; } = new List<Genre>();
+        public SortOrder SortOrder { get; }
+
+        public Shop(SortOrder sortOrder)
         {
+            SortOrder = sortOrder;
+
             Genres.AddGenre("Action")
                   .AddGenre("Fantasy")
                   .AddGenre("Adventure")
                   .AddGenre("Crime")
                   .AddGenre("Romance")
-                  .AddGenre("Drama");
+                  .AddGenre("Drama")
+                  .AddGenre("Horror");
 
             var action = Genres.First(g => g.Name.Equals("Action"));
             var fantasy = Genres.First(g => g.Name.Equals("Fantasy"));
@@ -58,7 +72,7 @@ namespace CSharpExercises.Classes.Chapter_10
                 var id = Films.Count.Equals(0) ? 1 : Films.Max(m => m.Id) + 1;
                 var film = new Film(id, title, year, genre);
 
-                Films.Add(film);
+                _films.Add(film);
 
                 return Films.Single(f => f.Id.Equals(id));
             }
@@ -67,8 +81,6 @@ namespace CSharpExercises.Classes.Chapter_10
                 throw;
             }
         }
-
-
         public int FilmsInGenre(int genreId)
         {
             try
@@ -81,6 +93,79 @@ namespace CSharpExercises.Classes.Chapter_10
             {
                 throw;
             }
+        }
+        public List<Film> FilterFilms(string filter)
+        {
+            try
+            {
+                if (filter == default || filter.Length <= 1) return Films;
+
+                return Films.Where(f =>  f.Title.ToLower().Contains(filter.ToLower())).ToList();
+
+            }
+            catch
+            {
+                return new List<Film>();
+            }
+        }
+        public List<Film> FilterFilms(string filter, int skip, int take)
+        {
+            IEnumerable<Film> films;
+
+            try
+            {
+                films = FilterFilms(filter);
+
+                if (skip >= 0) films = films.Skip(skip);
+                if (take > 0) films = films.Take(take);
+            }
+            catch
+            {
+                films = new List<Film>();
+            }
+
+            return films.ToList();
+        }
+        public List<Film> UnionFilms()
+        {
+            IEnumerable<Film> films;
+
+            try
+            {
+                var films1 = Films.Take(2);
+                var films2 = Films.Skip(4).Take(1);
+
+                films = films1.Union(films2);
+            }
+            catch
+            {
+                films = new List<Film>();
+            }
+
+            return films.ToList();
+        }
+        public List<Genre> GetGenresWithFilms()
+        {
+            List<Genre> genres = new List<Genre>();
+
+            try
+            {
+                foreach (var film in Films)
+                {
+                    var joinedGenres = Genres.Join(
+                        film.Genres,
+                        genre => genre.Id,
+                        filmGenre => filmGenre.Id,
+                        (genre, filmGenre) => genre); // new Genre(genre.Id, genre.Name));
+
+                    genres.AddRange(joinedGenres);
+                }
+            }
+            catch
+            {
+            }
+
+            return genres.Distinct().ToList();
         }
 
     }

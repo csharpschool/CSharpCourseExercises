@@ -2,15 +2,25 @@
 @using CSharpExercises.Classes.Chapter_10
 
 <h3>Films and Genres</h3>
-<div class="form-row">
-    <div class="col-2 offset-8">
-        <input @bind="@filter" class="form-control" placeholder="Filter" />
+<div class="form-row bottom-margin-small">
+    <div class="col-1 offset-4">
+        <input @bind="@skipFilms" class="form-control" placeholder="Skip" />
+    </div>
+    <div class="col-1">
+        <input @bind="@takeFilms" class="form-control" placeholder="Take" />
     </div>
     <div class="col-2">
-        <button class="btn btn-primary btn-padding" @onclick="FilterFilms">Filter</button>
+        <input @bind="@filter" class="form-control" placeholder="Filter" />
+    </div>
+    <div class="col-auto">
+        <div class="btn-group" role="group">
+            <button class="btn btn-primary btn-padding" @onclick="FilterFilms">Filter</button>
+            <button class="btn btn-primary btn-padding" @onclick="UnionFilms">Union</button>
+            <button class="btn btn-primary btn-padding" @onclick="Join">Join</button>
+        </div>
     </div>
 </div>
-<br />
+
 <div class="form-row">
     <div class="col-2">
         <input @bind="@newGenre" class="form-control" placeholder="Genre" />
@@ -43,7 +53,7 @@
 <div class="row">
     <div class="col-3">
         <ul class="list-group">
-            @foreach (var genre in shop.Genres.OrderBy(g => g.Name))
+            @foreach (var genre in genres.OrderBy(g => g.Name))
             {
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     @genre.Name
@@ -54,7 +64,7 @@
     </div>
     <div class="col-7 offset-1">
         <ul class="list-group">
-            @foreach (var film in films.OrderBy(g => g.Title))
+            @foreach (var film in films)
             {
                 <li class="list-group-item">
                     <div><strong>@film.Title</strong></div>
@@ -76,18 +86,21 @@
 }
 
 @code {
-    Shop shop = new Shop();
+    Shop shop = new Shop(SortOrder.Ascending);
     List<Film> films = new List<Film>();
+    List<Genre> genres = new List<Genre>();
     string newGenre = string.Empty;
     string newFilm = string.Empty;
     string newYear = string.Empty;
     string error = string.Empty;
     string filter = string.Empty;
     int selectedGenre;
+    string skipFilms, takeFilms;
 
     protected override void OnInitialized()
     {
         films = shop.Films;
+        genres = shop.Genres;
     }
 
     void AddGenre()
@@ -117,9 +130,23 @@
 
     void FilterFilms()
     {
-        if (filter.Length <= 1)
-            films = shop.Films;
+        var successSkip = int.TryParse(skipFilms, out int skip);
+        var successTake = int.TryParse(takeFilms, out int take);
+
+        if (successSkip || successTake)
+            films = shop.FilterFilms(filter, skip, take);
         else
-            films = shop.Films.Where(f => f.Title.ToLower().Contains(filter.ToLower())).ToList();
+            films = shop.FilterFilms(filter);
     }
+
+    void UnionFilms()
+    {
+        films = shop.UnionFilms();
+    }
+
+    void Join()
+    {
+        genres = shop.GetGenresWithFilms();
+    }
+
 }
