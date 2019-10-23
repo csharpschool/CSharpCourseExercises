@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace CSharpExercises.Classes.Chapter_10
 {
-    public static class FilmExtensions
+    public static class GenreExtensions
     {
         public static Film AddGenre(this Film film, Genre genre)
         {

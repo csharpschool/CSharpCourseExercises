@@ -3,33 +3,7 @@
 
 <h3>Films and Genres</h3>
 <div class="row">
-    <div class="col-2">
-        <div class="form-row bottom-margin-small">
-            <div class="col-4">
-                <input @bind="@newGenre" class="form-control" placeholder="Genre" />
-            </div>
-            <div class="col-2">
-                <div class="btn-group" role="group">
-                    <button class="btn btn-primary btn-padding" @onclick="AddGenre">Add</button>
-                    <button class="btn btn-primary btn-padding" @onclick="Join">Join</button>
-                    <button class="btn btn-primary btn-padding" @onclick="AllGenres">All</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-row">
-            <ul class="list-group col-8">
-                @foreach (var genre in genres.OrderBy(g => g.Name))
-                {
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        @genre.Name
-                        <span class="badge badge-primary badge-pill">@shop.FilmsInGenre(genre.Id)</span>
-                    </li>
-                }
-            </ul>
-        </div>
-    </div>
-    <div class="col-3">
+    <div class="col-7">
         @if (error != string.Empty)
         {
             <div class="form-row bottom-margin-small">
@@ -38,7 +12,37 @@
                 </div>
             </div>
         }
+    </div>
+</div>
 
+<div class="row">
+    <div class="col-3">
+        <div class="form-row bottom-margin-small">
+            <div class="col-4">
+                <input @bind="@newGenre" class="form-control" placeholder="Genre" />
+            </div>
+            <div class="col-auto">
+                <div class="btn-group" role="group">
+                    <button class="btn btn-primary btn-padding" @onclick="AddGenre">Add</button>
+                    <button class="btn btn-primary btn-padding" @onclick="GenreInFilms">In Films</button>
+                    <button class="btn btn-primary btn-padding" @onclick="AllGenres">All</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <ul class="list-group col-10">
+                @foreach (var genre in genres)
+                {
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        @genre.Name
+                        <span class="badge badge-primary badge-pill">@shop.FilmsUsingGenre(genre.Id)</span>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+    <div class="col-3">
         <div class="form-row bottom-margin-small">
             <div class="col-2">
                 <input @bind="@skipFilms" class="form-control" placeholder="Skip" />
@@ -66,7 +70,7 @@
             <div class="col-3">
                 <div class="form-group">
                     <select class="form-control" @bind="@selectedGenre">
-                        @foreach (var genre in shop.Genres.OrderBy(g => g.Name))
+                        @foreach (var genre in genres)
                         {
                             <option value=@genre.Id>@genre.Name</option>
                         }
@@ -100,6 +104,7 @@
     Shop shop = new Shop(SortOrder.Ascending);
     List<Film> films = new List<Film>();
     List<Genre> genres = new List<Genre>();
+    bool showAllGenres = true;
     string newGenre = string.Empty;
     string newFilm = string.Empty;
     string newYear = string.Empty;
@@ -118,13 +123,31 @@
     {
         error = string.Empty;
         genres = shop.Genres;
+        showAllGenres = true;
     }
 
     void AddGenre()
     {
-        error = string.Empty;
-        shop.Genres.AddGenre(newGenre);
+        try
+        {
+            error = string.Empty;
+            shop.AddGenre(newGenre);
+            if (showAllGenres) AllGenres();
+            else GenreInFilms();
+        }
+        catch (Exception ex)
+        {
+            error = ex.Message;
+        }
     }
+
+    void GenreInFilms()
+    {
+        error = string.Empty;
+        genres = shop.GetGenresInFilms();
+        showAllGenres = false;
+    }
+
 
     void AddFilm()
     {
@@ -165,10 +188,5 @@
         films = shop.UnionFilms();
     }
 
-    void Join()
-    {
-        error = string.Empty;
-        genres = shop.GetGenresWithFilms();
-    }
 
 }
