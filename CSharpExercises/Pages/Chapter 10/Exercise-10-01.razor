@@ -60,7 +60,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-row">
+        <div class="form-row bottom-margin-small">
             <div class="col-4">
                 <input @bind="@newFilm" class="form-control" placeholder="Film Title" />
             </div>
@@ -68,14 +68,12 @@
                 <input @bind="@newYear" class="form-control" placeholder="Released Year" />
             </div>
             <div class="col-3">
-                <div class="form-group">
-                    <select class="form-control" @bind="@selectedGenre">
-                        @foreach (var genre in genres)
-                        {
-                            <option value=@genre.Id>@genre.Name</option>
-                        }
-                    </select>
-                </div>
+                <select class="form-control" @bind="@selectedGenre">
+                    @foreach (var genre in genres)
+                    {
+                        <option value=@genre.Id>@genre.Name</option>
+                    }
+                </select>
             </div>
             <div class="col-1">
                 <button class="btn btn-primary btn-padding" @onclick="AddFilm">Add</button>
@@ -172,21 +170,33 @@
 
     void FilterFilms()
     {
-        error = string.Empty;
-        var successSkip = int.TryParse(skipFilms, out int skip);
-        var successTake = int.TryParse(takeFilms, out int take);
+        try
+        {
+            error = string.Empty;
+            var successSkip = int.TryParse(skipFilms, out int skip);
+            var successTake = int.TryParse(takeFilms, out int take);
 
-        if (successSkip || successTake)
-            films = shop.FilterFilms(filter, skip, take);
-        else
-            films = shop.FilterFilms(filter);
+            if (successSkip || successTake)
+                films = shop.FilterFilms(filter, skip, take);
+            else
+                films = shop.FilterFilms(filter);
+        }
+        catch (Exception ex)
+        {
+            error = ex.Message;
+        }
     }
 
     void UnionFilms()
     {
-        error = string.Empty;
-        films = shop.UnionFilms();
+        try
+        {
+            error = string.Empty;
+            films = shop.UnionFilms();
+        }
+        catch (Exception ex)
+        {
+            error = ex.Message;
+        }
     }
-
-
 }

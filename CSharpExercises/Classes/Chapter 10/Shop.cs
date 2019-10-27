@@ -133,7 +133,7 @@ namespace CSharpExercises.Classes.Chapter_10
             {
                 if (filter == default || filter.Length <= 1) return Films;
 
-                return Films.Where(f =>  f.Title.ToLower().Contains(filter.ToLower())).ToList();
+                return Films.Where(f => f.Title.ToLower().Contains(filter.ToLower())).ToList();
 
             }
             catch
