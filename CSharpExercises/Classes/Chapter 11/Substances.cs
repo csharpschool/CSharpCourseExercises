@@ -9,7 +9,7 @@ namespace CSharpExercises.Classes.Chapter_11
     {
         List<IMatter> Matters { get; } = new List<IMatter>();
         public string[] SateNames => Enum.GetNames(typeof(States));
-        public States GetSateValue(string name) => (States)Enum.Parse(typeof(States), name);
+        public States GetStateValue(string name) => (States)Enum.Parse(typeof(States), name);
 
         public Substances()
         {

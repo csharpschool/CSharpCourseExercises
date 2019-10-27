@@ -14,13 +14,13 @@
         }
 
         <div class="form-row bottom-margin-small">
-            <div class="col-4">
+            <div class="col-3">
                 <input @bind="@newName" class="form-control" placeholder="Substance Name" />
             </div>
-            <div class="col-3">
+            <div class="col-1">
                 <input @bind="@newMass" class="form-control" placeholder="Mass" />
             </div>
-            <div class="col-3">
+            <div class="col-2">
                 <div class="form-group">
                     <select class="form-control" @bind="@state">
                         @foreach (var state in substances.SateNames)
@@ -57,7 +57,6 @@
                     </li>
                 }
             </ul>
-
         </div>
     </div>
 </div>
@@ -81,9 +80,9 @@
         {
             error = string.Empty;
             var success = int.TryParse(newMass, out int mass);
-            var stateValue = substances.GetSateValue(state);
             if (success)
             {
+                var stateValue = substances.GetStateValue(state);
                 switch (stateValue)
                 {
                     case States.Liquid:
@@ -104,10 +103,11 @@
                 newMass = string.Empty;
                 state = string.Empty;
             }
+            else error = $"Could not add the substance.";
         }
-        catch (Exception ex)
+        catch
         {
-            error = $"Could not add the matter";
+            error = $"Could not add the substance.";
         }
     }
 

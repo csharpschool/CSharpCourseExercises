@@ -14,7 +14,7 @@
 
         public string GetCompression()
         {
-            return $"{Name} ({State}): not easily compressible";
+            return $"{Name} ({State}): not easily compressible.";
         }
 
         public string GetShape()
