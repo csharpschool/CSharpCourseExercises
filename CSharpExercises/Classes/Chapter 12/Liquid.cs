@@ -8,19 +8,8 @@
         {
         }
 
-        public override string GetCompression()
-        {
-            return $"{Name} ({State}): does not compress easily.";
-        }
-
-        public override string GetShape()
-        {
-            return $"{Name} ({State}): assumes the shape of the part of the container which it occupies.";
-        }
-
-        public override string ParticleMovement()
-        {
-            return $"{Name} ({State}): particles can move/slide past one another.";
-        }
+        public override string GetCompression() => $"{Name} ({State}): does not compress easily.";
+        public override string GetShape() => $"{Name} ({State}): assumes the shape of the part of the container which it occupies.";
+        public override string ParticleMovement() => $"{Name} ({State}): particles can move/slide past one another.";
     }
 }

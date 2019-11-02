@@ -10,20 +10,8 @@ namespace CSharpExercises.Classes.Chapter_12
         {
         }
 
-        public override string GetCompression()
-        {
-            return $"{Name} ({State}): is compressible.";
-        }
-
-        public override string GetShape()
-        {
-            return $"{Name} ({State}): assumes the shape and volume of its container.";
-        }
-
-        public override string ParticleMovement()
-        {
-            return $"{Name} ({State}): particles can move past one another.";
-        }
-
+        public override string GetCompression() => $"{Name} ({State}): is compressible.";
+        public override string GetShape() => $"{Name} ({State}): assumes the shape and volume of its container.";
+        public override string ParticleMovement() => $"{Name} ({State}): particles can move past one another.";
     }
 }

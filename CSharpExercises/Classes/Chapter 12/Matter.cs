@@ -22,9 +22,6 @@ namespace CSharpExercises.Classes.Chapter_12
         public abstract string GetCompression();
         public abstract string ParticleMovement();
 
-        public virtual string GetData()
-        {
-            return $"{Name} {Mass} {State}";
-        }
+        public virtual string GetData() => $"{Name} {Mass} {State}";
     }
 }

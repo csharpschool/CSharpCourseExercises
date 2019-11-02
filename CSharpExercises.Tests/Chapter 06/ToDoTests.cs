@@ -45,7 +45,10 @@ namespace CSharpExercises.Tests.Chapter_06
             var todos = new Todos();
             todos.Add("todo 1");
 
+            var todo = todos.Get().Find(t => t.GetDescription().Equals("todo 1"));
+            
             Assert.NotEmpty(todos.Get());
+            Assert.Empty(todo.GetDescriptionAttributes());
         }
 
         [Fact]
